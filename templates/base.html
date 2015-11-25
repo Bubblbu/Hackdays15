@@ -1,0 +1,70 @@
+{% load staticfiles %}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+    <!-- Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400italic,700italic,400,700" rel="stylesheet"
+          type="text/css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css">
+
+    {# Load CSS and JavaScript #}
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/jumbotron.css' %}" rel="stylesheet">
+
+    <!-- Start Bootstrap Custom CSS -->
+    <link href="{% static 'css/startbootstrap.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/mycustomstyle.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/round-about.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+            integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+            crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+{% include "navbar.html" %}
+
+{% block header %} {% endblock %}
+
+{# Load the tag library #}
+{#{% load bootstrap3 %}#}
+
+
+<div class="container">
+    {% block jumbotron %} {% endblock %}
+</div>
+
+{% block content %} {% endblock %}
+
+<div class="container">
+    <hr>
+    <footer>
+        <p>&copy; Hackdays 2015 - Team Uni Wien</p>
+    </footer>
+</div>
+
+
+<!-- /container -->
+
+
+{#    {% bootstrap_jquery_url %}#}
+{#    {% bootstrap_css %}#}
+{#    {% bootstrap_javascript %}#}
+</body>
+</html>

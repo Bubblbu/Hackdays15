@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ ressort.name }}
+{% endblock %}
+
+{% block header %}
+    <header class="sb-page-header">
+        <div class="container">
+            <h1>Essenz</h1>
+
+            <p>{{ ressort.name }}</p>
+        </div>
+
+    </header>
+{% endblock %}
+
+{% block jumbotron %}
+{#    <div class="jumbotron">#}
+{#        <div class="container">#}
+{#            <h1>#}
+{#                {{ ressort.name }}#}
+{#            </h1>#}
+{##}
+{#            <p>#}
+{#                {{ ressort.subtitle }}#}
+{#            </p>#}
+{#        </div>#}
+{#    </div>#}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ ressort.article_list }}</h1>
+    {% for article in ressort.article_set.all %}
+        <div class="container">
+            <h3><a href={{ article.slug }}>
+                {{ article.title }}
+            </a></h3>
+
+            <p>{{ article.body }}</p>
+        </div>
+    {% empty %}
+        <div class="container">
+            <h3>Unfortunately no articles yet</h3>
+        </div>
+
+    {% endfor %}
+{% endblock %}

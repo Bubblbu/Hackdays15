@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block header %}
+    <header class="sb-page-header">
+        <div class="container">
+            <h1>Essenz</h1>
+
+            <p>Wer und was sind wir?</p>
+        </div>
+    </header>
+{% endblock %}
+
+{% block jumbotron %}
+    {#    <div class="jumbotron">#}
+    {##}
+    {#        <h1>TROLOLO</h1>#}
+    {#    </div>#}
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Das Team</h2>
+            </div>
+
+            <div class="col-lg-4 col-sm-6 text-center">
+                <img class="img-circle img-responsive img-center" src="{% static 'img/karina.jpg' %}" alt="">
+
+                <h3>Karina Auer
+                    <small>Journalistin</small>
+                </h3>
+                <p>Publizistik, Uni Wien</p>
+            </div>
+            <div class="col-lg-4 col-sm-6 text-center">
+                <img class="img-circle img-responsive img-center" src="{% static 'img/asura_bw.jpg' %}" alt="">
+
+                <h3>Asura Enkhbayar
+                    <small>Programmierer</small>
+                </h3>
+                <p>Cognitive Science, Uni Wien</p>
+            </div>
+            <div class="col-lg-4 col-sm-6 text-center">
+                <img class="img-circle img-responsive img-center" src="{% static 'img/iri.jpg' %}" alt="">
+
+                <h3>Irina Pöschl
+                    <small>Journalistin</small>
+                </h3>
+                <p>Publizistik, Uni Wien</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
