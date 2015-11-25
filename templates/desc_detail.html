@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block header %}
+    {% include 'wasistwas_header.html' %}
+{% endblock %}
+
+{% block jumbotron %}
+    {#    <div class="jumbotron">#}
+    {##}
+    {#        <h1>TROLOLO</h1>#}
+    {#    </div>#}
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <ol class="breadcrumb">
+        <li><a href={% url "lexikon_base" %}>Home</a></li>
+        {% for subcat in desc.category.get_parents reversed %}
+            <li>
+                <a href={% url 'lexikon' subcat.slug %}>
+                    {{ subcat.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ol>
+
+    <div class="row">
+        <div class="col-md-7">
+            <h2>{{ desc.name }}</h2>
+
+            <p>{{ desc.body }}</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-7">
+            <h2>Kommt vor in:</h2>
+            {% for article in desc.articles.all %}
+                <h3><a href="{{ article.ressort.slug }}/{{ article.slug }}">{{ article.title }}</a></h3>
+                <h5>{{ article.ressort.name }} | von {{ article.author }}</h5>
+
+                <p class="text-justify">
+                    {% for word in article.get_teaser %}
+                        {{ word }}
+                    {% endfor %}
+                </p>
+            {% empty %}
+                <div class="container">
+                    <h3>Unfortunately no articles yet</h3>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

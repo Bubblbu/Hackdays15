@@ -5,7 +5,7 @@
         <div class="container">
             <h1>Essenz</h1>
 
-            <p>Keep it short and simple. <br>Nachrichten - verständlich für jeden!</p>
+            <p>Nachrichten - kurz und bündig.</p>
         </div>
 
     </header>
@@ -19,39 +19,58 @@
 {% endblock %}
 
 {% block content %}
-    {% for article in article_list %}
-        <div class="container">
-            <h2><a href={{ article.slug }}>{{ article.title }}</a></h2>
-            <h4>{{ article.ressort.name }} | von {{ article.author }}</h4>
-
-            <p class="text-justify">
-                {% for word in article.get_teaser %}
-                    {{ word }}
-                {% endfor %}
-            </p>
-        </div>
-    {% empty %}
-        <div class="container">
-            <h3>Unfortunately no articles yet</h3>
-        </div>
-
-    {% endfor %}
-
-    <div class="container">
-        {% if is_paginated %}
-            <div class="pagination">
-            <span class="page-links">
-                {% if page_obj.has_previous %}
-                    <a href="/cars?page={{ page_obj.previous_page_number }}">previous</a>
+    <div class="row">
+        <div class="col-md-7">
+            {% for article in article_list %}
+                {% if forloop.counter != 1 %}
+                    <hr>
                 {% endif %}
-                <span class="page-current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                </span>
-                {% if page_obj.has_next %}
-                    <a href="/cars?page={{ page_obj.next_page_number }}">next</a>
-                {% endif %}
-            </span>
+                <h2><a href="{{ article.ressort.slug }}/{{ article.slug }}">{{ article.title }}</a></h2>
+                <h4>{{ article.ressort.name }} | von {{ article.author }}</h4>
+
+                <p class="text-justify">
+                    {% for word in article.get_teaser %}
+                        {{ word }}
+                    {% endfor %}
+                </p>
+            {% empty %}
+                <div class="container">
+                    <h3>Unfortunately no articles yet</h3>
+                </div>
+            {% endfor %}
+
+            {% if is_paginated %}
+                <div class="pagination">
+                    <span class="page-links">
+                        {% if page_obj.has_previous %}
+                            <a href="/cars?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+                        <span class="page-current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </span>
+                        {% if page_obj.has_next %}
+                            <a href="/cars?page={{ page_obj.next_page_number }}">next</a>
+                        {% endif %}
+                    </span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Schwerpunkte</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        {% for article in schwerpunkt_list %}
+                            <a href="{{ article.ressort.slug }}/{{ article.slug }}" class="list-group-item">
+                                <span class="badge">{{ article.category }}</span>
+                                {{ article.title }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
-        {% endif %}
-    </div>
+        </div>
+
 {% endblock %}

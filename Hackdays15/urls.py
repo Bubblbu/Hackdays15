@@ -21,15 +21,18 @@ from webpage.models import *
 
 admin.site.register(Ressort)
 admin.site.register(Article)
+admin.site.register(Category)
+admin.site.register(Description)
 
-base_name = "dev"
-
+base_name = "essenz"
 
 urlpatterns = [
     url(r'^{}/admin/'.format(base_name), include(admin.site.urls)),
     url(r'^{}/$'.format(base_name), HomeView.as_view(), name="landing"),
     url(r'^{}/contact/$'.format(base_name), AboutUsView.as_view(), name="aboutus"),
+    url(r'^{}/lexikon/$'.format(base_name), CategoryBaseView.as_view(), name="lexikon_base"),
+    url(r'^{}/lexikon/(?P<slug>[^/]+)/$'.format(base_name), CategoryDetailView.as_view(), name="lexikon"),
+    url(r'^{}/desc/(?P<slug>[^/]+)/$'.format(base_name), DescDetailView.as_view(), name="desc_detail"),
     url(r'^{}/(?P<slug>[^/]+)/$'.format(base_name), RessortDetailView.as_view(), name="ressort"),
     url(r'^{}/(?P<ressort>[^/]+)/(?P<slug>.+)/$'.format(base_name), ArticleDetailView.as_view(), name="article"),
-
 ]

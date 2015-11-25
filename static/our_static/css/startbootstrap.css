@@ -156,6 +156,55 @@ header.marquee .btn-cta:hover {
     margin-bottom: 50px
 }
 
+
+
+.sb-page-header-lex {
+    position: relative;
+    padding: 30px 15px;
+    text-align: center;
+    color: rgba(255, 255, 255, .8);
+    background-color: #5f021f;
+    background-image: url(../img/premium-bg.png);
+    margin-bottom: 40px;
+    font-size: 20px
+}
+
+.sb-page-header-lex h1 {
+    margin-top: 0;
+    color: #fff
+}
+
+.sb-page-header-lex p {
+    margin-bottom: 0;
+    line-height: 1.4
+}
+
+.sb-page-header-lex .container {
+    position: relative
+}
+
+@media (min-width: 768px) {
+    .sb-page-header-lex {
+        padding-top: 60px;
+        padding-bottom: 60px;
+        text-align: left;
+        font-size: 24px
+    }
+
+    .sb-page-header-lex h1 {
+        font-size: 60px;
+        line-height: 1
+    }
+}
+
+@media (min-width: 992px) {
+    .sb-page-header-lex h1, .sb-page-header-lex p {
+        margin-right: 380px
+    }
+}
+
+
+
 .sb-page-header {
     position: relative;
     padding: 30px 15px;
@@ -198,91 +247,6 @@ header.marquee .btn-cta:hover {
 @media (min-width: 992px) {
     .sb-page-header h1, .sb-page-header p {
         margin-right: 380px
-    }
-}
-
-.carbonad {
-    width: auto !important;
-    height: auto !important;
-    margin: 30px -30px -31px !important;
-    padding: 20px !important;
-    border: solid rgba(255, 255, 255, .5) !important;
-    border-width: 1px 0 !important;
-    overflow: hidden;
-    text-align: left;
-    font-size: 13px !important;
-    line-height: 16px !important;
-    background: transparent !important;
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, .4)
-}
-
-.carbonad-img {
-    margin: 0 !important
-}
-
-.carbonad-text, .carbonad-tag {
-    display: block !important;
-    float: none !important;
-    width: auto !important;
-    height: auto !important;
-    margin-left: 145px !important;
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important
-}
-
-.carbonad-text {
-    padding-top: 0 !important;
-    color: rgba(255, 255, 255, .8)
-}
-
-.carbonad-tag {
-    text-align: left !important;
-    color: inherit !important
-}
-
-.carbonad-text a, .carbonad-tag a {
-    color: #fff !important
-}
-
-.carbonad #azcarbon > img {
-    display: none
-}
-
-header.marquee .carbonad {
-    margin: 50px -15px 0 !important
-}
-
-@media (min-width: 480px) {
-    .carbonad {
-        width: 330px !important;
-        margin: 20px auto !important;
-        border-width: 1px !important;
-        border-radius: 4px
-    }
-
-    header.marquee .carbonad {
-        margin: 50px auto 0 !important
-    }
-}
-
-@media (min-width: 768px) {
-    .carbonad {
-        margin-right: 0 !important;
-        margin-left: 0 !important
-    }
-}
-
-@media (min-width: 992px) {
-    .carbonad {
-        position: absolute;
-        top: 0;
-        right: 15px;
-        width: 330px !important;
-        margin: 0 !important;
-        padding: 15px !important
-    }
-
-    header.marquee .carbonad {
-        position: static
     }
 }
 

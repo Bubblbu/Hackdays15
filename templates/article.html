@@ -40,62 +40,52 @@
     {#            </p>#}
     {#    </div>#}
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2> {{ article.title }} </h2>
+    <div class="row">
+        <div class="col-md-12">
+            <h2> {{ article.title }} </h2>
 
-                <h4>{{ article.author }} - {{ article.created }}</h4>
+            <h4>{{ article.author }} - {{ article.created }}</h4>
 
-                <div class="row">
-                    <div class="col-md-7">
-                        {#                    <h2> {{ article.title }} </h2>#}
-                        {##}
-                        {#                    <h3>{{ article.author }} - {{ article.created }}</h3>#}
+            <div class="row">
+                <div class="col-md-7">
+                    {#                    <h2> {{ article.title }} </h2>#}
+                    {##}
+                    {#                    <h3>{{ article.author }} - {{ article.created }}</h3>#}
 
-                        <p class="text-justify">
-                            {% for word in article.get_body %}
-                                {% if word == "<br>" %}
-                                    </p><p class="text-justify">
-                                {% elif word in article.get_specwords %}
-                                    <b>{{ word }}</b>
-                                {% else %}
-                                    {{ word }}
-                                {% endif %}
-                            {% endfor %}
+                    <p class="text-justify">
+                        {% for word in article.get_body %}
+                            {% if word == "<br>" %}
+                                </p><p class="text-justify">
+                            {% elif word in article.get_specwords %}
+                                {% for desc in article.get_descs %}
+                                    {% if desc.name == word %}
+                                        <b><a href={% url 'desc_detail' desc.slug %}>{{ desc }}</a></b>
+                                    {% endif %}
+                                {% endfor %}
+
+                            {% else %}
+                                {{ word }}
+                            {% endif %}
+                        {% endfor %}
                         </p>
-                    </div>
-                    <div class="col-md-5">
-                        <dl class="dl-horizontal">
-                            <dt>
-                                Description lists
-                            </dt>
-                            <dd>
-                                A description list is perfect for defining terms.
-                            </dd>
-                            <dt>
-                                Euismod
-                            </dt>
-                            <dd>
-                                Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.
-                            </dd>
-                            <dd>
-                                Donec id elit non mi porta gravida at eget metus.
-                            </dd>
-                            <dt>
-                                Malesuada porta
-                            </dt>
-                            <dd>
-                                Etiam porta sem malesuada magna mollis euismod.
-                            </dd>
-                            <dt>
-                                Felis euismod semper eget lacinia
-                            </dt>
-                            <dd>
-                                Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-                                massa justo sit amet risus.
-                            </dd>
-                        </dl>
+                </div>
+                <div class="col-md-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h1 class="panel-title">Was ist was?</h1>
+                        </div>
+                        <div class="panel-body">
+                            <dl class="dl-horizontal">
+                                {% for desc in article.get_descs %}
+                                    <dt>
+                                        <a href={% url 'desc_detail' desc.slug %}>{{ desc.name }}</a>
+                                    </dt>
+                                    <dd>
+                                        {{ desc.body }}
+                                    </dd>
+                                {% endfor %}
+                            </dl>
+                        </div>
                     </div>
                 </div>
                 {#                <p class="text-justify">#}
@@ -111,5 +101,4 @@
                 {#                    </p>#}
             </div>
         </div>
-    </div>
 {% endblock %}

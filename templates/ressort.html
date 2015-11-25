@@ -30,22 +30,28 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ ressort.article_list }}</h1>
-    {% for article in ressort.article_set.all %}
-        <div class="container">
-            <h2><a href={{ article.slug }}>{{ article.title }}</a></h2>
-            <h4>Von {{ article.author }} | {{ article.created }}</h4>
+    <div class="row">
+        <div class="col-md-8">
+            <h1>{{ ressort.article_list }}</h1>
+            {% for article in ressort.article_set.all %}
+                {% if forloop.counter != 1 %}
+                    <hr>
+                {% endif %}
 
-            <p class="text-justify">
-                {% for word in article.get_teaser %}
-                    {{ word }}
-                {% endfor %}
-            </p>
-        </div>
-    {% empty %}
-        <div class="container">
-            <h3>Unfortunately no articles yet</h3>
-        </div>
+                <h2><a href={{ article.slug }}>{{ article.title }}</a></h2>
+                <h4>Von {{ article.author }} | {{ article.created }}</h4>
 
-    {% endfor %}
+                <p class="text-justify">
+                    {% for word in article.get_teaser %}
+                        {{ word }}
+                    {% endfor %}
+                </p>
+            {% empty %}
+                {% include 'keineartikel.html' %}
+            {% endfor %}
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
 {% endblock %}

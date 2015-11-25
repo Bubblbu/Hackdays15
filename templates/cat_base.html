@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block header %}
+    {% include 'wasistwas_header.html' %}
+{% endblock %}
+
+{% block jumbotron %}
+    {#    <div class="jumbotron">#}
+    {##}
+    {#        <h1>TROLOLO</h1>#}
+    {#    </div>#}
+{% endblock %}
+
+{% block content %}
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+    </ol>
+
+    <div class="row">
+        <div class="col-md-7">
+            {% for overcat in category_list %}
+                {% if overcat.parent == None %}
+                        <h2>{{ overcat.name }}</h2>
+                        {% for cat in overcat.get_all_children %}
+                            {% for desc in cat.description_set.all %}
+                                <p><a href={% url 'desc_detail' desc.slug %}>{{ desc.name }}</a></p>
+                            {% endfor %}
+                        {% endfor %}
+                {% else %}
+                    <h5>{{ cat.name }}</h5>
+                {% endif %}
+            {% endfor %}
+
+            {% if is_paginated %}
+                <div class="pagination">
+                    <span class="page-links">
+                        {% if page_obj.has_previous %}
+                            <a href="/cars?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+                        <span class="page-current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </span>
+                        {% if page_obj.has_next %}
+                            <a href="/cars?page={{ page_obj.next_page_number }}">next</a>
+                        {% endif %}
+                    </span>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

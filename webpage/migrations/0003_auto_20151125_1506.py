@@ -7,13 +7,12 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('webpage', '0001_initial'),
+        ('webpage', '0002_auto_20151125_1454'),
     ]
 
     operations = [
-        migrations.RenameField(
-            model_name='article',
-            old_name='date_created',
-            new_name='created',
+        migrations.AlterModelOptions(
+            name='article',
+            options={'ordering': ('created',)},
         ),
     ]
