@@ -25,31 +25,38 @@
         {% endfor %}
     </ol>
 
-    <div class="row">
-        <div class="col-md-7">
-            <h2>{{ desc.name }}</h2>
-
-            <p>{{ desc.body }}</p>
+    <div class="col-md-7">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{ desc.name }}</h1>
+            </div>
+            <div class="panel-body">
+                <div class="list-group">
+                    {{ desc.body }}
+                </div>
+            </div>
         </div>
     </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-7">
-            <h2>Kommt vor in:</h2>
-            {% for article in desc.articles.all %}
-                <h3><a href="{{ article.ressort.slug }}/{{ article.slug }}">{{ article.title }}</a></h3>
-                <h5>{{ article.ressort.name }} | von {{ article.author }}</h5>
 
-                <p class="text-justify">
-                    {% for word in article.get_teaser %}
-                        {{ word }}
-                    {% endfor %}
-                </p>
-            {% empty %}
-                <div class="container">
-                    <h3>Unfortunately no articles yet</h3>
-                </div>
-            {% endfor %}
-        </div>
+    <div class="col-md-7">
+        <hr>
+    </div>
+
+    <div class="col-md-7">
+        <h2>Kommt vor in:</h2>
+        {% for article in desc.articles.all %}
+            <h3><a href="{{ article.ressort.slug }}/{{ article.slug }}">{{ article.title }}</a></h3>
+            <h5>{{ article.ressort.name }} | von {{ article.author }}</h5>
+
+            <p class="text-justify">
+                {% for word in article.get_teaser %}
+                    {{ word }}
+                {% endfor %}
+            </p>
+        {% empty %}
+            <div class="container">
+                <h3>Unfortunately no articles yet</h3>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}

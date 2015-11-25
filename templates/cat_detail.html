@@ -30,13 +30,15 @@
             {% for overcat in cat.get_all_children %}
                 {% if overcat.name != cat.name %}
                     <h2>{{ overcat.name }}</h2>
+                    <div class="list-group">
                     {% if overcat.has_descs == True %}
                         {% for desc in overcat.description_set.all %}
-                            <p><a href={% url 'desc_detail' desc.slug %}>{{ desc.name }}</a></p>
+                            <li class="list-group-item"><a href={% url 'desc_detail' desc.slug %}>{{ desc.name }}</a></li>
                         {% endfor %}
                     {% else %}
-                        <p>Keine Schlagwörter.</p>
+                        <li class="list-group-item">Keine Schlagwörter.</li>
                     {% endif %}
+                    </div>
                 {% endif %}
             {% endfor %}
 

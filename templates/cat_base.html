@@ -21,11 +21,13 @@
             {% for overcat in category_list %}
                 {% if overcat.parent == None %}
                         <h2>{{ overcat.name }}</h2>
+                    <div class="list-group">
                         {% for cat in overcat.get_all_children %}
                             {% for desc in cat.description_set.all %}
-                                <p><a href={% url 'desc_detail' desc.slug %}>{{ desc.name }}</a></p>
+                                <li class="list-group-item"><a href={% url 'desc_detail' desc.slug %}>{{ desc.name }}</a></li>
                             {% endfor %}
                         {% endfor %}
+                    </div>
                 {% else %}
                     <h5>{{ cat.name }}</h5>
                 {% endif %}
