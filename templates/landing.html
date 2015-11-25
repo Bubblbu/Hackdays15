@@ -19,5 +19,39 @@
 {% endblock %}
 
 {% block content %}
+    {% for article in article_list %}
+        <div class="container">
+            <h2><a href={{ article.slug }}>{{ article.title }}</a></h2>
+            <h4>{{ article.ressort.name }} | von {{ article.author }}</h4>
 
+            <p class="text-justify">
+                {% for word in article.get_teaser %}
+                    {{ word }}
+                {% endfor %}
+            </p>
+        </div>
+    {% empty %}
+        <div class="container">
+            <h3>Unfortunately no articles yet</h3>
+        </div>
+
+    {% endfor %}
+
+    <div class="container">
+        {% if is_paginated %}
+            <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="/cars?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/cars?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

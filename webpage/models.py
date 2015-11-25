@@ -28,7 +28,7 @@ class Article(models.Model):
 
     specialwords = models.TextField('Spezialwörter', null=True, blank=True)
     raw_body = models.TextField()
-    body = models.TextField('Inhalt', editable=False)
+    body = models.TextField('Inhalt')
     created = models.DateTimeField(editable=False)
 
     slug = models.SlugField(max_length=80, editable=False)
@@ -73,6 +73,9 @@ class Article(models.Model):
 
     def get_specwords(self):
         return json.loads(self.specialwords)
+
+    def get_teaser(self):
+        return json.loads(self.body)[0:30] + ["..."]
 
     def __unicode__(self):
         return self.title

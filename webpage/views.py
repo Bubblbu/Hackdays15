@@ -5,8 +5,11 @@ from django.views.generic import TemplateView, ListView, DetailView
 from webpage.models import *
 
 
-class HomeView(TemplateView):
+class HomeView(ListView):
+    model = Article
+    context_object_name = "article_list"
     template_name = "landing.html"
+    # paginate_by = 2
 
 
 class RessortDetailView(DetailView):
