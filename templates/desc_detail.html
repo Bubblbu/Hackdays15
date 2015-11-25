@@ -45,7 +45,9 @@
     <div class="col-md-7">
         <h2>Kommt vor in:</h2>
         {% for article in desc.articles.all %}
-            <h3><a href="{{ article.ressort.slug }}/{{ article.slug }}">{{ article.title }}</a></h3>
+            <h3><a href={% url 'article' article.ressort article.slug %}>
+                {{ article.title }}
+            </a></h3>
             <h5>{{ article.ressort.name }} | von {{ article.author }}</h5>
 
             <p class="text-justify">

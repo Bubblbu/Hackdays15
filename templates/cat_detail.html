@@ -28,17 +28,18 @@
     <div class="row">
         <div class="col-md-7">
             {% for overcat in cat.get_all_children %}
-                {% if overcat.name != cat.name %}
-                    <h2>{{ overcat.name }}</h2>
-                    <div class="list-group">
-                    {% if overcat.has_descs == True %}
-                        {% for desc in overcat.description_set.all %}
-                            <li class="list-group-item"><a href={% url 'desc_detail' desc.slug %}>{{ desc.name }}</a></li>
-                        {% endfor %}
-                    {% else %}
-                        <li class="list-group-item">Keine Schlagwörter.</li>
-                    {% endif %}
-                    </div>
+                {% if overcat.parent != None %}
+                        <h2><a href={% url 'lexikon' overcat.slug %}>{{ overcat.name }}</a></h2></h2>
+                        <div class="list-group">
+                            {% if overcat.has_descs == True %}
+                                {% for desc in overcat.description_set.all %}
+                                    <li class="list-group-item"><a
+                                            href={% url 'desc_detail' desc.slug %}>{{ desc.name }}</a></li>
+                                {% endfor %}
+                            {% else %}
+                                <li class="list-group-item">Keine Schlagwörter.</li>
+                            {% endif %}
+                        </div>
                 {% endif %}
             {% endfor %}
 

@@ -20,7 +20,7 @@
         <div class="col-md-7">
             {% for overcat in category_list %}
                 {% if overcat.parent == None %}
-                        <h2>{{ overcat.name }}</h2>
+                        <h2><a href={% url 'lexikon' overcat.slug %}>{{ overcat.name }}</a></h2>
                     <div class="list-group">
                         {% for cat in overcat.get_all_children %}
                             {% for desc in cat.description_set.all %}
